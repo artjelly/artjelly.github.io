@@ -46,3 +46,31 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+/* JIA STARTS HERE */
+
+body{
+	font-family:"Quicksand", sans-serif;
+}
+
+h1, h2, h3, h4, h5{
+	line-height:1.5em;
+}
+
+h1{ font-size:24px; font-weight: 700;}
+h2{ font-size:16px; font-weight:700}
+
+p, ul, li{
+	line-height:1.5em;
+}
+
+#name-title{
+	font-size:100px;
+}
+
+.wrapper{
+text-align: center;
+}
+
+
+
