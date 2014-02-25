@@ -47,32 +47,270 @@ table {
 	border-spacing: 0;
 }
 
-/* JIA STARTS HERE */
-
-body{
-	font-family:"Quicksand", sans-serif;
+* {
+	margin:0;
+	padding:0;
+	outline:0;
 }
 
-h1, h2, h3, h4, h5{
+
+
+/*JIA EDITS*/
+
+body {
+	font-family:"Anonymous Pro",sans-serif;
+	color:Black;
+	font-size:10px;
+	font-weight:400;
+	background:#fff;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family:"Anonymous Pro";
+	font-weight:400;
+}
+
+
+.wrap {
+	border-left:3px solid Black;
+	border-right:3px solid Black;
+}
+
+h1 {
+	font-size:28px;
+	line-height:100%;
+	margin:0 0 40px;
+}
+
+h2 {
+	font-size:20px;
+	margin:0 0 20px;
+	line-height:1.4em;
+}
+
+p {
+	font-size:18px;
+	margin:0 0 15px;
 	line-height:1.5em;
+
 }
 
-h1{ font-size:24px; font-weight: 700;}
-h2{ font-size:16px; font-weight:700}
+/*LINKS IN GENERAL*/
 
-p, ul, li{
-	line-height:1.5em;
+a{
+	color:yellow;
+	text-decoration: none;
+	border-bottom:3px dotted yellow;
 }
 
-#name-title{
-	font-size:100px;
+a:hover{
+	border-bottom:5px yellow solid;
 }
 
-.wrapper{
-text-align: center;
+a:visited {
+	color:yellow;
+}
+
+#title{
+	padding-top:300px;
+	margin-left:0 auto;
+	text-align: center;
+	width:100%;
+	color:white;
+	font-size: 100px;
+}
+
+/* This is the selector i used for my menu, it needs to be set as position:absolute; */
+.subMenu {
+	position:absolute;
+	top:600px;
+	height:50px;
+	z-index:1000;
+	width:100%;
+	max-width:1140px;
+	min-width:960px;
+	background:#fff;
+	border-bottom:3px solid Black;
+	border-top:3px solid Black;
+}
+
+.subMenu .inner {
+	padding:0;
+}
+
+.subMenu a {
+	font-size:20px;
+	border:0;
+}
+
+.subNavBtn.active {
+	color:#fff;
+}
+
+.subNavBtn {
+	display:block;
+	height:35px;
+	width:12%;
+	float:left;
+	margin:0;
+	text-decoration:none;
+	font-size:16px;
+	padding:15px 2% 0;
+	text-align:center;
+	color:Black;
 }
 
 
-.projects{
-	margin:15px;
+/* SECTIONS */
+.sTop {
+	min-height:630px;
+	background:Black;
 }
+
+#sTop {
+	margin-left:10px;
+}
+
+.s0 {
+	min-height:350px;
+	background:Black;
+	color:#fff;
+}
+
+.s1 {
+	min-height:380px;
+	background:#fff;
+}
+
+.s2 {
+	min-height:200px;
+	background:Black;
+	color:white;
+}
+
+.s3 {
+	min-height:200px;
+	background:#fff;
+}
+
+.s4 {
+	min-height:200px;
+	background:black;
+	color:white;
+
+}
+
+.section.sFoot {
+	min-height:20px;
+	background:#fff;
+	padding:0;
+}
+
+.sFoot p{
+		font-size:16px;
+}
+
+.sFoot .inner {
+	padding:0;
+	padding-top:20px;
+}
+
+.menuBtn {
+	background:center center no-repeat transparent;
+	background:Black;
+	display:block;
+	width:40px;
+	height:40px;
+	position:absolute;
+	top:0;
+	left:10px;
+}
+
+.active {
+	background:Black;
+}
+
+.active h2 {
+	color:#fff;
+}
+
+.clear {
+	clear:both;
+}
+
+.wrap {
+/*background:url(../images/bg.png) top left repeat-x;*/
+	width:100%;
+	max-width:1140px;
+	min-width:960px;
+	z-index:10;
+	position:relative;
+	margin:0 auto;
+	padding:0;
+}
+
+.section {
+	width:100%;
+	max-width:1140px;
+	min-width:960px;
+	z-index:10;
+	position:relative;
+	margin:0 auto;
+	padding:35px 0 20px;
+	border-bottom:3px solid Black;
+
+}
+
+.inner {
+	width:1140px;
+	margin:0 auto;
+	position:relative;
+	min-height:30px;
+	font-size:18px;
+	font-weight:400;
+	padding:40px 0;
+}
+
+.section.sTop,.section.sTop .inner {
+	padding:0;
+	margin:0;
+	line-height:0;
+}
+
+
+.end {
+	margin:0;
+}
+
+
+
+#camera {
+	width:1140px;
+	height:auto;
+}
+
+/*HOVER TABS*/
+
+.tab {
+	border-bottom:3px Black dotted;
+}
+
+
+#tabhead {
+	background-color:Black;
+	color:#fff;
+}
+
+.tab p,#tabhead h2 {
+	margin:0;
+	padding:12px 12px 8px;
+}
+
+.tab a{
+	color:black;
+}
+
+.tab:hover{
+	background-color: yellow;
+}
+
