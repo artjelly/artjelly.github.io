@@ -3,25 +3,138 @@
 	<title>This is the Website</title>
 	<meta charset="utf-8">
 	<meta name ="description" content="Description of the page">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1 user-scalable=no">
 
-	<link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
-</head>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.smint.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
 	<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Anonymous+Pro:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 
-<body>
-<div class="wrapper">
-	<h1 id="name-title">Jia Lee</h1>
-	<a href="mailto:jlee31@risd.edu">You can email me!</a>
+	<link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
+		<link rel="stylesheet" href="grid.css" title="" type="text/css" media="screen" charset="utf-8">
+	<script type="text/javascript">
+    $(document).ready( function() {
+    $('.subMenu').smint({
+        'scrollSpeed' : 1000
+		});
+    });
+    </script>
 
-<div class="projects">
-	<h2>Here's some stuff:</h2>
+</head>
 
-	<ul>
-	<a href="www.google.com"><li> Hello world</li></a>
-	</ul>
-</div>
-</div>
+
+<body onload="setTimeout(function() { window.scrollTo(0, 1) }, 100);">
+    <div class="wrap">
+
+        <div class="subMenu">
+            <div class="inner">
+
+               <a href="#" id="sTop" class="subNavBtn">HOME</a>
+                <a href="#" id="s0" class="subNavBtn">ABOUT</a>
+                <a href="#" id="s1" class="subNavBtn">1/ONE</a>
+                <a href="#" id="s2" class="subNavBtn">2/TWO</a>
+                <a href="#" id="s3" class="subNavBtn">3/THREE</a>
+                <a href="#" id="s4" class="subNavBtn">4/Four</a>
+
+            </div>
+        </div>
+
+        <div class="section sTop">
+            <div class="inner">
+            <div id ="title"><span>PART JELLY</span></div>
+               </div>
+        </div>
+        <div class="section s0">
+            <div class="inner container_12">
+				<br/><br/><br/>
+                <h1>ABOUT</h1>
+                <div class="grid_8 alpha description">
+                    <p>Welcome to Part Jelly - my repository for works-in-progress. It's a companion site to <a href="http://www.artjelly.com">Art Jelly</a>, where official art thingums sit.</p>
+
+	                <p>Here's my <a href="http://artjelly.github.io/">Github</a>, you can send me some cats via <a href="mailto:jlee31@risd.edu">email.</a></p>
+                </div>
+                <div class="grid_4 omega"></div>
+            </div>
+        </div>
+
+        <div class="section s1">
+            <div class="inner container_12">
+                <h1>1/ONE</h1>
+
+                <div class="grid_4 alpha">
+                    <div class="tab-head" id="tabhead">
+                        <h2>Exercise</h2>
+                    </div>
+
+                    <div class="tab">
+                        <a href="helloworld/index.html"><p>Hello, World</p></a>
+                    </div>
+                </div>
+
+                <div class="grid_4">
+                    <div class="tab-head" id="tabhead">
+                        <h2>Drafts</h2>
+                    </div>
+                    <div class="tab">
+                        <a href="https://www.chatbot4u.com/en/chatbots/mrs-helen-george.html
+"><p>A Conversation with Spam</p></a>
+                    </div>
+
+                    <div class="tab">
+                        <a href="http://www.generatorland.com/usergenerator.aspx?id=6378"><p>Spam from Spam</p></a>
+                    </div>
+
+                 </div>
+
+                <div class="grid_4">
+                    <div class="tab-head" id="tabhead">
+                        <h2>Final</h2>
+                    </div>
+                    <div class="tab">
+                        <p>TBC</p></a>
+                    </div>
+                 </div>
+               </div>
+        </div>
+
+        <div class="section s2">
+            <div class="inner container_12">
+               <h1>2/TWO</h1>
+            </div>
+        </div>
+		<div class="section s3">
+            <div class="inner container_12">
+               <h1>3/THREE</h1>
+            </div>
+        </div>
+		<div class="section s4">
+            <div class="inner container_12">
+               <h1>4/FOUR</h1>
+            </div>
+        </div>
+        <div class="section sFoot">
+            <div class="inner">
+                <p style="text-align:center">Copyright 2014, Jia Lee</a></p>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-9804757-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    </script>
 </body>
 </html>
-
