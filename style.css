@@ -314,3 +314,46 @@ a:visited {
 	background-color: yellow;
 }
 
+/*HELLO WORLD*/
+.helloworld{
+line-height: 0;
+
+}
+
+.helloworld #holder{
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+	text-align: center;
+
+}
+
+.helloworld p{
+	line-height:80%;
+font-size:1000px;
+	margin:0;
+
+}
+
+.helloworld .bg{background-color:yellow;}
+.helloworld .bg1{background-color:#ff149a;}
+.helloworld .bg2{background-color:#00eaff;}
+.helloworld .bg3{background-color:#8b00e6;}
+.helloworld .bg4{background-color:#ffae00;}
+.helloworld .bg5{background-color:#00d2a1;}
+.helloworld .bg6{background-color:#f50b0b;}
+.helloworld .bg7{background-color:#00ff16;}
+.helloworld .bg8{background-color:#52c2ff;}
+.helloworld .bg9{background-color:yellow;}
+
+.helloworld .arrows{
+font-size:190px;
+padding-top:20px;
+padding-bottom:20px;
+overflow:hidden;
+}
+
+.helloworld .arrows:hover{
+	color:black;
+}
+
