@@ -6,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1 user-scalable=no">
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script>
+
         <script type="text/javascript" src="js/jquery.smint.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 
@@ -21,6 +23,20 @@
 		});
     });
     </script>
+
+  <script>
+  $(function() {
+$("#draggable").click(function(){
+$( "#draggable" ).effect( "bounce", { distance: 10 }, 3000, "easeOutQuart");
+});
+
+$( "#draggable" ).draggable({ revert: true });
+
+});
+
+</script>
+</head>
+<body>
 
 </head>
 
@@ -43,7 +59,10 @@
 
         <div class="section sTop">
             <div class="inner">
-            <div id ="title"><span>PART JELLY</span></div>
+				<div id="draggable" class="ui-widget-content">
+            <div id ="title"><a><span>PART JELLY</span></a></div>
+            </div>
+
                </div>
         </div>
         <div class="section s0">
@@ -81,6 +100,7 @@
                         <a href="https://www.chatbot4u.com/en/chatbots/mrs-helen-george.html
 "><p>A Conversation with Spam</p></a>
                     </div>
+
 
                     <div class="tab">
                         <a href="http://www.generatorland.com/usergenerator.aspx?id=6378"><p>Spam from Spam</p></a>
