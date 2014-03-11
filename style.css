@@ -88,7 +88,7 @@ h2 {
 	line-height:1.4em;
 }
 
-p {
+p, span {
 	font-size:18px;
 	margin:0 0 15px;
 	line-height:1.5em;
@@ -357,3 +357,23 @@ overflow:hidden;
 	color:black;
 }
 
+/* CHAT BOT */
+#chatbot{
+background:#d7d7d7;
+color:black;
+padding:50px;
+}
+
+#chatbot a span, #chatbot a{
+color:blue;
+border-bottom:3px blue dotted;
+}
+
+#chatbot span:hover, #chatbot a:hover{
+	background:blue;
+	color:white;
+}
+
+#chatbot p{
+	padding:20px 0
+}
