@@ -1,0 +1,105 @@
+body, p{
+	font-family: "Archer";
+	color:#690000
+}
+
+body{
+	font-size:30px;
+	background-color:#ffe1e5
+
+}
+.container{
+	margin:0em;
+	padding:1em;
+	padding-top:5em;
+	background-color:#ffe9ec;
+}
+
+h1, h2, h3, h4 {
+	color:#690000
+}
+
+h1 {font-size:2.5em}
+h2 {font-size:1.5em; line-height:1.4em}
+h3 {font-size:1.17em}
+h4 {font-size:1em}
+h5 {font-size:0.83em}
+h6 {font-size:0.75em}
+
+#title{
+	padding:1em;
+	border-top:#690000 5px dotted;
+	border-bottom:#690000 5px dotted;
+
+	background-color: #cc1e43;
+	text-align: center;
+	margin-left:-20px;
+	margin-right:0;
+	width:100%;
+}
+
+.header{
+	position:fixed;
+	width:100%
+}
+
+
+
+.header h1{
+color:white;
+}
+
+p{
+line-height: 1.5em;
+margin-bottom: 1em;
+padding:0.5em;
+}
+
+
+.highlighted{
+	background-color:#ff8385;
+	border-radius:0em;
+
+}
+
+.column_1, .column_2{
+	width:45%;
+	margin:2.5%;
+	float:left;
+	border:2px red dotted;
+	box-sizing: border-box;
+	padding:0.5em;
+	background-color:#ff8385;
+}
+
+@media all and (max-width:700px){
+	.header h1{
+		font-size:2em;
+	}
+	.container{
+		padding-top:4em;
+		margin:0;
+	}
+
+	.column_1, .column_2{
+		float:none;
+		width:100%;
+		margin:1em 0;
+	}
+
+}
+
+.cat{
+	width:200px;
+	height:200px;
+	overflow:hidden;
+	margin:10px;
+}
+
+.catholder{
+	text-align:center;
+	width:100%;
+	display:block;
+	float:left;
+}
+
