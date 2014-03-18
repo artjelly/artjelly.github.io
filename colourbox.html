@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title></title>
+		<link rel="stylesheet" href="reset.css" title="" type="text/css" media="screen" charset="utf-8">
+
+		<link rel="stylesheet" href="colorbox.css" title="" type="text/css" media="screen" charset="utf-8">
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+
+	</head>
+
+	<body class="hello">
+
+		<div class="box"></div>
+
+		<script>
+
+
+		var boxNumber = 1000;
+		var boxWidth = 0;
+		var g= 0;
+		var boxHeight = 20;
+
+
+		$(function(){
+
+
+
+
+		for(var i = 0; i <boxNumber; i++){
+		$(".hello").append("<div class='box'></div>");
+			}
+
+
+		$(".box").hover(function(){
+				boxWidth = Math.floor((Math.random()*40)+5);;
+				g = g +7;
+
+				$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
+				$(this).animate({
+				width: boxWidth+"%"},{
+				duration: 2000
+				});
+				});
+
+		$(".box").click(function(){
+			$(this).css({ "background-color":"white"});
+		})
+
+
+		});
+
+		</script>
+
+	</body>
+</html>
