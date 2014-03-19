@@ -33,15 +33,18 @@
 
 
 		$(".box").mouseenter(function(){
-				boxWidth = Math.floor((Math.random()*30)+5);;
-				g = g +7;
 
-				$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
-				$(this).animate({
-				width: boxWidth+"%"},{
-				duration: 300
+			$(this).mousemove(function(){
+					boxWidth = Math.floor((Math.random()*30)+5);;
+					g = g +7;
+
+					$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
+					$(this).animate({
+					width: boxWidth+"%"},{
+					duration: 300
+					});
 				});
-				});
+			});
 
 		$(".box").click(function(){
 			$(this).css({ "background-color":"white"});
