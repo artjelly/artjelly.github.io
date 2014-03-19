@@ -9,9 +9,14 @@
 
 	</head>
 
-	<body class="hello">
-<audio id="multiaudio1" src="chime.wav" preload="auto"></audio>
+	<body>
+	<div class="header">
+		<a href="http://www.artjelly.com"><img class="jellylogo" src="images/jellylogo.png"></a>
 
+	</div>
+	<audio id="multiaudio1" src="chime.wav" preload="auto"></audio>
+	<div class="colourcontainer">
+	</div>
 		<script>
 var boxNumber = 2000;
 var boxWidth = 1;
@@ -20,7 +25,7 @@ var boxHeight = 20;
 
 $(function() {
 	for (var i = 0; i < boxNumber; i++) {
-		$(".hello").append("<div class='box'></div>");
+		$(".colourcontainer").append("<div class='box'></div>");
 	}
 
 	$(".box").mouseenter(function() {
