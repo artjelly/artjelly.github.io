@@ -17,7 +17,7 @@
 
 
 		var boxNumber = 1000;
-		var boxWidth = 0;
+		var boxWidth = 1;
 		var g= 0;
 		var boxHeight = 20;
 
@@ -32,14 +32,14 @@
 			}
 
 
-		$(".box").hover(function(){
+		$(".box").mouseenter(function(){
 				boxWidth = Math.floor((Math.random()*40)+5);;
 				g = g +7;
 
 				$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
 				$(this).animate({
 				width: boxWidth+"%"},{
-				duration: 4000
+				duration: 200
 				});
 				});
 
