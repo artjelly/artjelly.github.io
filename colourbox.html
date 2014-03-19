@@ -10,46 +10,61 @@
 	</head>
 
 	<body class="hello">
-
-		<div class="box"></div>
+<audio id="multiaudio1" src="chime.wav" preload="auto"></audio>
 
 		<script>
+var boxNumber = 1000;
+var boxWidth = 1;
+var g = 0;
+var boxHeight = 20;
 
-
-		var boxNumber = 2000;
-		var boxWidth = 1;
-		var g= 0;
-		var boxHeight = 20;
-
-
-		$(function(){
-
-
-
-
-		for(var i = 0; i <boxNumber; i++){
+$(function() {
+	for (var i = 0; i < boxNumber; i++) {
 		$(".hello").append("<div class='box'></div>");
-			}
+	}
 
-
-		$(".box").mouseenter(function(){
-				boxWidth = Math.floor((Math.random()*30)+5);;
-				g = g +7;
-
-				$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
-				$(this).animate(
-				{
-				width: boxWidth+"%"},
-				{duration:400,queue:false
-				});
-				});
-
-		$(".box").click(function(){
-			$(this).css({ "background-color":"white"});
-		})
-
-
+	$(".box").mouseenter(function() {
+		boxWidth = Math.floor((Math.random() * 30) + 5);;
+		g = g + 7;
+		play_multi_sound('multiaudio1');
+		$(this).css({
+			"background-color": "hsl(" + g + ",100%,50%)"
 		});
+		$(this).animate({
+			width: boxWidth + "%"
+		}, {
+			duration: 400,
+			queue: false
+		});
+	});
+
+	$(".box").click(function() {
+		$(this).css({
+			"background-color": "white"
+		});
+	});
+
+	var channel_max = 20; // number of channels
+	audiochannels = new Array();
+	for (a = 0; a < channel_max; a++) { // prepare the channels
+		audiochannels[a] = new Array();
+		audiochannels[a]['channel'] = new Audio(); // create a new audio object
+		audiochannels[a]['finished'] = -1; // expected end time for this channel
+	}
+
+	function play_multi_sound(s) {
+		for (a = 0; a < audiochannels.length; a++) {
+			thistime = new Date();
+			if (audiochannels[a]['finished'] < thistime.getTime()) { // is this channel finished?
+				audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration * 1000;
+				audiochannels[a]['channel'].src = document.getElementById(s).src;
+				audiochannels[a]['channel'].load();
+				audiochannels[a]['channel'].play();
+				break;
+			}
+		}
+	}
+});
 
 		</script>
 
