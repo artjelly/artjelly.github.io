@@ -37,9 +37,10 @@
 				g = g +7;
 
 				$(this).css({ "background-color": "hsl("+g+",100%,50%)"});
-				$(this).animate({
-				width: boxWidth+"%"},{
-				duration: 300
+				$(this).animate(
+				{
+				width: boxWidth+"%"},
+				{duration:1000,queue:false
 				});
 				});
 
