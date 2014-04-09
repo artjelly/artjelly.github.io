@@ -1,0 +1,87 @@
+<html>
+	<head>
+<script src="jquery-1.11.0.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="animate.css" title="" type="text/css" media="screen" charset="utf-8">
+<script src="mousetrap.min.js"></script>
+<script>
+
+var i;
+
+var keys =['space', 'backspace','q' ,'w' ,'e' ,'r' ,'t' ,'y' ,'u' ,'i' ,'o' ,'p' ,'a' ,'s' ,'d' ,'f' ,'g' ,'h' ,'j' ,'k' ,'l' ,'z' ,'x' ,'c' ,'v' ,'b' ,'n' ,'m'];
+
+var keyt =['space', 'backspace', 'a' ,'b' ,'c' ,'d' ,'e' ,'f' ,'g' ,'h' ,'i' ,'j' ,'k' ,'l' ,'m' ,'n' ,'o' ,'p' ,'q' ,'r' ,'s' ,'t' ,'u' ,'v' ,'w' ,'x' ,'y' ,'z'];
+
+var effects = [ 'slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+
+for (var i = 0; i<keys.length; i++){
+
+Mousetrap.bind(keys[i], function(e, combo) {
+//log(combo);
+
+if (combo=='space'){
+makeBoxSpace();
+}
+
+else if (combo=='backspace'){
+deleteLetter();
+}
+
+else {
+var hoo = 15*keys.indexOf(combo);
+makeBox(hoo, combo);
+}
+
+});
+}
+
+function deleteLetter(){
+	var box = document.getElementById('thisbox');
+	var boxpara = document.getElementById('colourbox');
+	boxpara.parentNode.removeChild(boxpara);
+}
+
+function makeBox(colour, combo)
+	{
+var number = Math.floor((Math.random()*effects.length-1)+1);
+var box = document.createElement("div");
+    box.innerHTML = "<div id='colourbox' class='" + effects[number] + "' style='background-color:hsl("+colour+",100%,75%)'>" + "<span class='letter fadeOut'>" + combo + "</span" + "</div>";
+document.getElementById('thisbox').appendChild(box);
+	}
+
+
+function makeBoxSpace()
+	{
+var box = document.createElement("div");
+    box.innerHTML = "<div id='colourbox' class='slideUp' style='background-color:hsl(1,100%,100%)'></div>";
+document.getElementById('thisbox').appendChild(box);
+	}
+
+function log(letterTyped)
+		{
+			if (letterTyped =='space'){
+				letterTyped =' ';
+			}
+
+			var span = document.createElement("span");
+			span.innerHTML= letterTyped;
+			span.className= 'fadeIn';
+			document.getElementById('statusBar').appendChild(span);
+		}
+
+</script>
+	</head>
+	<body>
+<div class="bar">
+<span id="statusBar"></span>
+</div>
+<div id="thisbox"></div>
+
+<script>
+
+
+</script>
+
+	</body>
+</html>
