@@ -53,6 +53,47 @@ slideDown
 	}
 }
 
+.fadeInOut{
+	animation-name: fadeInOut;
+	-webkit-animation-name: fadeInOut;
+
+  -webkit-animation: fadeInOut 1s infinite; /* Safari 4+ */
+  -moz-animation:   fadeInOut 1s infinite; /* Fx 5+ */
+  -o-animation:     fadeInOut 1s infinite; /* Opera 12+ */
+  animation:        fadeInOut 1s infinite; /* IE 10+ */
+
+}
+
+@keyframes fadeInOut {
+	0% {
+		opacity: 1;
+	}
+
+	50%{
+		opacity: 0.3;
+
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeInOut {
+	0% {
+		opacity: 1;
+	}
+
+	50%{
+		opacity: 0.3;
+
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
 .fadeOutHalf{
 	animation-name: fadeOutHalf;
 	-webkit-animation-name: fadeOutHalf;
