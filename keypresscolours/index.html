@@ -16,136 +16,116 @@
     <script src="mousetrap.min.js" type="text/javascript">
 </script>
     <script type="text/javascript">
+var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+var storetext = '';
+var keyt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+for (var i = 0; i < keys.length; i++) {
+	Mousetrap.bind(keys[i], function(e, combo) {
+		//log(combo);
+		var hoo = 15 * keys.indexOf(combo);
+		storetext = storetext + makeBox(hoo, combo);
+	})
+}
+Mousetrap.bind(['space', 'shift+space'], function() {
+	makeBoxSpace();
+	storetext = storetext + ' ';
+});
+Mousetrap.bind(['backspace'], function(e) {
+	if (e.preventDefault) {
+		e.preventDefault();
+	} else {
+		// internet explorer
+		e.returnValue = false;
+	}
+	deleteLetter();
+	storetext = storetext.substring(0, storetext.length - 1);
+});
+Mousetrap.bind(['command'], function(e) {
+	if (e.preventDefault) {
+		e.preventDefault();
+	} else {
+		// internet explorer
+		e.returnValue = false;
+	}
+});
+Mousetrap.bind('command', function() {
+	showLetter();
+}, 'keydown');
+Mousetrap.bind('command', function() {
+	hideLetter();
+}, 'keyup');
+Mousetrap.bind('return', function() {
+	var box = document.createElement("div");
+	box.className = 'colourbox return';
+	document.getElementById('thisbox').appendChild(box);
+	storetext = storetext + '\n';
+});
 
-    var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+function deleteLetter() {
+	$('.colourbox').last().remove();
+}
 
-    var storetext ='';
+function makeBox(colour, combo) {
+	var number = Math.floor((Math.random() * effects.length - 1) + 1);
+	var box = document.createElement("div");
+	box.innerHTML = "<div id ='end' class='colourbox " + effects[number] + "' style='background-color:hsl(" + colour + ",100%,80%)'>" + "<span  class='fadeOut letter'>" + combo + "<\/span>" + "<\/div>";
+	document.getElementById('thisbox').appendChild(box);
+	return combo;
+}
 
-    var keyt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-    var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
-    for (var i = 0; i < keys.length; i++) {
-    Mousetrap.bind(keys[i], function(e, combo) {
-        //log(combo);
-        var hoo = 15 * keys.indexOf(combo);
-        storetext = storetext + makeBox(hoo, combo);
-    })
-    }
-    Mousetrap.bind(['space', 'shift+space'], function() {
-    makeBoxSpace();
-    storetext = storetext + ' ';
-    });
-    Mousetrap.bind(['backspace'], function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
-    deleteLetter();
-    storetext = storetext.substring(0, storetext.length - 1);
-    });
+function makeBoxSpace() {
+	var box = document.createElement("div");
+	box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
+	document.getElementById('thisbox').appendChild(box);
+}
 
-    Mousetrap.bind(['command'], function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
-    });
+function refresh() {}
 
-    Mousetrap.bind('command', function() {
-    showLetter();
-    }, 'keydown');
+function showLetter() {
+	$('.letter').removeClass('fadeOut');
+}
 
-    Mousetrap.bind('command', function() {
-    hideLetter();
-    }, 'keyup');
+function hideLetter() {
+	$('.letter').removeClass('fadeIn');
+	$('.letter').addClass('fadeOut');
+}
+$(function() {
+	$('#box-info').click(function() {
+		$('#about').fadeToggle();
+	});
+	$('#about').click(function() {
+		$('#about').fadeToggle();
+	});
+	$('#box-sans').click(function() {
+		$("body").toggleClass("sans");
+	});
+	$('#box-ital').click(function() {
+		$("body").toggleClass("italic");
+	});
+	$('#box-refresh').click(function() {
+		$(".colourbox").remove();
+	});
+	$('#blinking').scrollintoview({
+		duration: 2500,
+		direction: "vertical",
+		complete: function() {
+			// highlight the element so user's focus gets where it needs to be
+		}
+	});
+});
+$(function() {
+	$('#box-download').click(function() {
+		download('mywords.txt', storetext);
+	});
+});
 
-    Mousetrap.bind('return', function(){
-    var box = document.createElement("div");
-    box.className = 'colourbox return';
-    document.getElementById('thisbox').appendChild(box);
-    storetext = storetext + '\n';
-    });
-
-
-    function deleteLetter() {
-    $('.colourbox').last().remove();
-    }
-
-    function makeBox(colour, combo) {
-    var number = Math.floor((Math.random() * effects.length - 1) + 1);
-    var box = document.createElement("div");
-    box.innerHTML = "<div id ='end' class='colourbox " + effects[number] + "' style='background-color:hsl(" + colour + ",100%,80%)'>" + "<span  class='fadeOut letter'>" + combo + "<\/span>" + "<\/div>";
-    document.getElementById('thisbox').appendChild(box);
-    return combo;
-
-    }
-
-    function makeBoxSpace() {
-    var box = document.createElement("div");
-    box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
-    document.getElementById('thisbox').appendChild(box);
-    }
-
-    function refresh(){
-
-    }
-
-    function showLetter() {
-    $('.letter').removeClass('fadeOut');
-
-    }
-
-    function hideLetter() {
-    $('.letter').removeClass('fadeIn');
-    $('.letter').addClass('fadeOut');
-    }
-
-    $(function(){
-    $('#box-info').click(function(){
-        $('#about').fadeToggle();
-    });
-
-    $('#about').click(function(){
-        $('#about').fadeToggle();
-    });
-    $('#box-sans').click(function(){
-        $("body").toggleClass("sans");
-    });
-    $('#box-ital').click(function(){
-        $("body").toggleClass("italic");
-    });
-    $('#box-refresh').click(function(){
-        $(".colourbox").remove();
-    });
-
-    $('#blinking').scrollintoview({
-    duration: 2500,
-    direction: "vertical",
-    complete: function() {
-        // highlight the element so user's focus gets where it needs to be
-    }
-    });
-
-    })
-
-
-    $(function(){
-    $('#question2').click(function(){
-        download('mywords.txt', storetext);
-    });
-
-    });
-
-    function download(filename, text) {
-    var pom = document.createElement('a');
-    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    pom.setAttribute('download', filename);
-    pom.click();
-    }
-
+function download(filename, text) {
+	var pom = document.createElement('a');
+	pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	pom.setAttribute('download', filename);
+	pom.click();
+}
 
 
     </script>
