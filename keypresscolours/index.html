@@ -37,7 +37,7 @@ Mousetrap.bind(['backspace'], function(e) {
 	storetext = storetext.substring(0, storetext.length - 1);
 });
 
-Mousetrap.bind(['down'], function(e) {
+Mousetrap.bind(['shift'], function(e) {
 	if (e.preventDefault) {
 		e.preventDefault();
 	} else {
@@ -46,11 +46,11 @@ Mousetrap.bind(['down'], function(e) {
 	}
 });
 
-Mousetrap.bind('down', function() {
+Mousetrap.bind('shift', function() {
 	showLetter();
 }, 'keydown');
 
-Mousetrap.bind('down', function() {
+Mousetrap.bind('shift', function() {
 	hideLetter();
 }, 'keyup');
 
@@ -154,7 +154,7 @@ function download(filename, text) {
 <h1>About</h1>
 <p>Colour-Writer turns letters into colours. It's stress-free writing that results in calming and colourful patterns.
 </p>
-	<p>Hold down to reveal your writing in full. You can also click download to keep a text copy of it.</p>
+	<p>Hold Shift&#x21E7; to reveal your writing in full. You can also click download to keep a text copy of it.</p>
 
 	<hr/>
 
