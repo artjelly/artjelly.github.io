@@ -1,184 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
 <html>
-	<head>
-<script src="jquery-1.11.0.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'><link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
-<link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic' rel='stylesheet' type='text/css'><link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="animate.css" title="" type="text/css" media="screen" charset="utf-8">
-<script src="jquery.scrollintoview.min.js"></script>
-<script src="mousetrap.min.js"></script>
-<script>
+<head>
 
-var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+    <script src="jquery-1.11.0.min.js" type="text/javascript">
+</script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="animate.css" title="" type="text/css" media="screen" charset="utf-8">
+    <script src="jquery.scrollintoview.min.js" type="text/javascript">
+</script>
+    <script src="mousetrap.min.js" type="text/javascript">
+</script>
+    <script type="text/javascript">
 
-var storetext ='';
+    var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
 
-var keyt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
-for (var i = 0; i < keys.length; i++) {
-	Mousetrap.bind(keys[i], function(e, combo) {
-		//log(combo);
-		var hoo = 15 * keys.indexOf(combo);
-		storetext = storetext + makeBox(hoo, combo);
-	})
-}
-Mousetrap.bind(['space', 'shift+space'], function() {
-	makeBoxSpace();
-	storetext = storetext + ' ';
-});
-Mousetrap.bind(['backspace'], function(e) {
-	if (e.preventDefault) {
-		e.preventDefault();
-	} else {
-		// internet explorer
-		e.returnValue = false;
-	}
-	deleteLetter();
-	storetext = storetext.substring(0, storetext.length - 1);
-});
+    var storetext ='';
 
-Mousetrap.bind(['command'], function(e) {
-	if (e.preventDefault) {
-		e.preventDefault();
-	} else {
-		// internet explorer
-		e.returnValue = false;
-	}
-});
+    var keyt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+    for (var i = 0; i < keys.length; i++) {
+    Mousetrap.bind(keys[i], function(e, combo) {
+        //log(combo);
+        var hoo = 15 * keys.indexOf(combo);
+        storetext = storetext + makeBox(hoo, combo);
+    })
+    }
+    Mousetrap.bind(['space', 'shift+space'], function() {
+    makeBoxSpace();
+    storetext = storetext + ' ';
+    });
+    Mousetrap.bind(['backspace'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    deleteLetter();
+    storetext = storetext.substring(0, storetext.length - 1);
+    });
 
-Mousetrap.bind('command', function() {
-	showLetter();
-}, 'keydown');
+    Mousetrap.bind(['command'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    });
 
-Mousetrap.bind('command', function() {
-	hideLetter();
-}, 'keyup');
+    Mousetrap.bind('command', function() {
+    showLetter();
+    }, 'keydown');
 
-Mousetrap.bind('return', function(){
-	var box = document.createElement("div");
-	box.className = 'colourbox return';
-	document.getElementById('thisbox').appendChild(box);
-	storetext = storetext + '\n';
-});
+    Mousetrap.bind('command', function() {
+    hideLetter();
+    }, 'keyup');
+
+    Mousetrap.bind('return', function(){
+    var box = document.createElement("div");
+    box.className = 'colourbox return';
+    document.getElementById('thisbox').appendChild(box);
+    storetext = storetext + '\n';
+    });
 
 
-function deleteLetter() {
-	$('.colourbox').last().remove();
-}
+    function deleteLetter() {
+    $('.colourbox').last().remove();
+    }
 
-function makeBox(colour, combo) {
-	var number = Math.floor((Math.random() * effects.length - 1) + 1);
-	var box = document.createElement("div");
-	box.innerHTML = "<div id ='end' class='colourbox " + effects[number] + "' style='background-color:hsl(" + colour + ",100%,80%)'>" + "<span  class='fadeOut letter'>" + combo + "</span>" + "</div>";
-	document.getElementById('thisbox').appendChild(box);
-	return combo;
+    function makeBox(colour, combo) {
+    var number = Math.floor((Math.random() * effects.length - 1) + 1);
+    var box = document.createElement("div");
+    box.innerHTML = "<div id ='end' class='colourbox " + effects[number] + "' style='background-color:hsl(" + colour + ",100%,80%)'>" + "<span  class='fadeOut letter'>" + combo + "<\/span>" + "<\/div>";
+    document.getElementById('thisbox').appendChild(box);
+    return combo;
 
-}
+    }
 
-function makeBoxSpace() {
-	var box = document.createElement("div");
-	box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'></div>";
-	document.getElementById('thisbox').appendChild(box);
-}
+    function makeBoxSpace() {
+    var box = document.createElement("div");
+    box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
+    document.getElementById('thisbox').appendChild(box);
+    }
 
-function refresh(){
+    function refresh(){
 
-}
+    }
 
-function showLetter() {
-	$('.letter').removeClass('fadeOut');
+    function showLetter() {
+    $('.letter').removeClass('fadeOut');
 
-}
+    }
 
-function hideLetter() {
-	$('.letter').removeClass('fadeIn');
-	$('.letter').addClass('fadeOut');
-}
+    function hideLetter() {
+    $('.letter').removeClass('fadeIn');
+    $('.letter').addClass('fadeOut');
+    }
 
-$(function(){
-	$('#box-info').click(function(){
-		$('#about').fadeToggle();
-	});
+    $(function(){
+    $('#box-info').click(function(){
+        $('#about').fadeToggle();
+    });
 
-	$('#about').click(function(){
-		$('#about').fadeToggle();
-	});
-	$('#box-sans').click(function(){
-		$("body").toggleClass("sans");
-	});
-	$('#box-ital').click(function(){
-		$("body").toggleClass("italic");
-	});
-	$('#box-refresh').click(function(){
-		$(".colourbox").remove();
-	});
+    $('#about').click(function(){
+        $('#about').fadeToggle();
+    });
+    $('#box-sans').click(function(){
+        $("body").toggleClass("sans");
+    });
+    $('#box-ital').click(function(){
+        $("body").toggleClass("italic");
+    });
+    $('#box-refresh').click(function(){
+        $(".colourbox").remove();
+    });
 
-	$('#blinking').scrollintoview({
+    $('#blinking').scrollintoview({
     duration: 2500,
     direction: "vertical",
     complete: function() {
         // highlight the element so user's focus gets where it needs to be
     }
-});
+    });
 
-})
+    })
 
 
-$(function(){
-	$('#question2').click(function(){
-		download('mywords.txt', storetext);
-	});
+    $(function(){
+    $('#question2').click(function(){
+        download('mywords.txt', storetext);
+    });
 
-});
+    });
 
-function download(filename, text) {
+    function download(filename, text) {
     var pom = document.createElement('a');
     pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     pom.setAttribute('download', filename);
     pom.click();
-}
+    }
 
 
 
-</script>
-	</head>
-	<body>
-<!--
+    </script>
+
+    <title></title>
+</head>
+
+<body>
+    <!--
 <div class="bar">
 <span id="statusBar"></span>
 </div>
 -->
-<div id="about"><div id="aboutbox">
 
+    <div id="about">
+        <div id="aboutbox">
+            <h1>About</h1>
 
-<h1>About</h1>
-<p>Colour-Writer turns letters into colours. It's stress-free writing that results in calming and colourful patterns.
-</p>
+            <p>Colour-Writer turns letters into colours. It's stress-free writing that results in calming and colourful patterns.</p>
+            <hr>
 
-<hr/>
-	<p>&#x2318; Reveal your writing in full.</p>
-	<p> &#x23ce; Create new line.</p>
-	<p>&#x232b; Delete character.</p>
-	<hr/>
+            <p>&#x2318; Reveal your writing in full.</p>
 
-	<p class="descript">Created by <a href="http://www.artjelly.com">Jia Lee</a> using <a href="http://craig.is/killing/mice">Mousetrap.js</a> and <a href="http://www.justinaguilar.com/animations/">CSS3 Animations Cheat Sheet.</a></p>
+            <p>&#x23ce; Create new line.</p>
 
-</div></div>
+            <p>&#x232b; Delete character.</p>
+            <hr>
 
-<div id="help">
-	<div id="box-info" class="questionbox"><img src="icon_q.png"></div>
-	<div id="box-download" class="questionbox"><img src="icon_d.png"></div>
-	<div id="box-refresh" class="questionbox"><img src="icon_r.png"></div>
-	<div id="box-ital" class="questionbox"><em>i</em></div>
-	<div id="box-sans" class="questionbox">A</div>
-</div>
+            <p class="descript">Created by <a href="http://www.artjelly.com">Jia Lee</a> using <a href="http://craig.is/killing/mice">Mousetrap.js</a> and <a href="http://www.justinaguilar.com/animations/">CSS3 Animations Cheat Sheet.</a></p>
+        </div>
+    </div>
 
-</div>
+    <div id="help">
+        <div id="box-info" class="questionbox"><img src="icon_q.png"></div>
 
-<div class="wrapper">
-<div id="thisbox"></div>
-<div class="fadeInOut" id="blinking"></div>
-</div>
+        <div id="box-download" class="questionbox"><img src="icon_d.png"></div>
 
-	</body>
+        <div id="box-refresh" class="questionbox"><img src="icon_r.png"></div>
+
+        <div id="box-ital" class="questionbox">
+            <em>i</em>
+        </div>
+
+        <div id="box-sans" class="questionbox">
+            A
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div id="thisbox"></div>
+
+        <div class="fadeInOut" id="blinking"></div>
+    </div>
+</body>
 </html>
