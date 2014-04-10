@@ -17,9 +17,11 @@
 </script>
     <script type="text/javascript">
 var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+
 var storetext = '';
-var keyt = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
 var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+
 for (var i = 0; i < keys.length; i++) {
 	Mousetrap.bind(keys[i], function(e, combo) {
 		//log(combo);
@@ -27,6 +29,7 @@ for (var i = 0; i < keys.length; i++) {
 		storetext = storetext + makeBox(hoo, combo);
 	})
 }
+
 Mousetrap.bind(['space', 'shift+space'], function() {
 	makeBoxSpace();
 	storetext = storetext + ' ';
@@ -62,10 +65,6 @@ Mousetrap.bind('return', function() {
 	storetext = storetext + '\n';
 });
 
-function deleteLetter() {
-	$('.colourbox').last().remove();
-}
-
 function makeBox(colour, combo) {
 	var number = Math.floor((Math.random() * effects.length - 1) + 1);
 	var box = document.createElement("div");
@@ -74,13 +73,9 @@ function makeBox(colour, combo) {
 	return combo;
 }
 
-function makeBoxSpace() {
-	var box = document.createElement("div");
-	box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
-	document.getElementById('thisbox').appendChild(box);
+function deleteLetter() {
+	$('.colourbox').last().remove();
 }
-
-function refresh() {}
 
 function showLetter() {
 	$('.letter').removeClass('fadeOut');
@@ -90,6 +85,15 @@ function hideLetter() {
 	$('.letter').removeClass('fadeIn');
 	$('.letter').addClass('fadeOut');
 }
+
+
+function makeBoxSpace() {
+	var box = document.createElement("div");
+	box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
+	document.getElementById('thisbox').appendChild(box);
+}
+
+
 $(function() {
 	$('#box-info').click(function() {
 		$('#about').fadeToggle();
@@ -113,18 +117,17 @@ $(function() {
 			// highlight the element so user's focus gets where it needs to be
 		}
 	});
-});
-$(function() {
 	$('#box-download').click(function() {
 		download('mywords.txt', storetext);
 	});
+
 });
 
 function download(filename, text) {
-	var pom = document.createElement('a');
-	pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	pom.setAttribute('download', filename);
-	pom.click();
+	var file = document.createElement('a');
+	file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+	file.setAttribute('download', filename);
+	file.click();
 }
 
     </script>
