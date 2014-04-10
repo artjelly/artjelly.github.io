@@ -37,7 +37,7 @@ Mousetrap.bind(['backspace'], function(e) {
 	storetext = storetext.substring(0, storetext.length - 1);
 });
 
-Mousetrap.bind(['shift'], function(e) {
+Mousetrap.bind(['command'], function(e) {
 	if (e.preventDefault) {
 		e.preventDefault();
 	} else {
@@ -46,11 +46,11 @@ Mousetrap.bind(['shift'], function(e) {
 	}
 });
 
-Mousetrap.bind('shift', function() {
+Mousetrap.bind('command', function() {
 	showLetter();
 }, 'keydown');
 
-Mousetrap.bind('shift', function() {
+Mousetrap.bind('command', function() {
 	hideLetter();
 }, 'keyup');
 
@@ -154,8 +154,11 @@ function download(filename, text) {
 <h1>About</h1>
 <p>Colour-Writer turns letters into colours. It's stress-free writing that results in calming and colourful patterns.
 </p>
-	<p>Hold Shift&#x21E7; to reveal your writing in full. You can also click download to keep a text copy of it.</p>
 
+<hr/>
+	<p>&#x2318; Reveal your writing in full.</p>
+	<p> &#x23ce; Create new line.</p>
+	<p>&#x232b; Delete character.</p>
 	<hr/>
 
 	<p class="descript">Created by <a href="http://www.artjelly.com">Jia Lee</a> using <a href="http://craig.is/killing/mice">Mousetrap.js</a> and <a href="http://www.justinaguilar.com/animations/">CSS3 Animations Cheat Sheet.</a></p>
