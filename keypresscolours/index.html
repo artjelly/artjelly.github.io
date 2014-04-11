@@ -17,119 +17,151 @@
 </script>
     <script type="text/javascript">
 var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+    var storetext = '';
+    var shouldIShow = 0;
+    var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+    for (var i = 0; i < keys.length; i++) {
+    Mousetrap.bind(keys[i], function(e, combo) {
+        //log(combo);
+        $('#about').fadeOut();
+        var colour = 165 + 15 * keys.indexOf(combo);
+        if (shouldIShow == 0) {
+            storetext = storetext + makeBox(colour, combo, '83%');
+            $('.letter').addClass('fadeOut');
+        } else {
+            storetext = storetext + makeBox(colour, combo, '83%');
+        }
+    })
+    }
 
-var storetext = '';
+    Mousetrap.bind(['space', 'shift+space'], function() {
+    makeBoxSpace();
+    storetext = storetext + ' ';
+    });
 
-var effects = ['slideLeft', 'slideRight', 'slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+    Mousetrap.bind(['backspace', 'shift+backspace'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    destroyLetter();
+    storetext = storetext.substring(0, storetext.length - 1);
+    });
 
-for (var i = 0; i < keys.length; i++) {
-	Mousetrap.bind(keys[i], function(e, combo) {
-		//log(combo);
-		var hoo = 165+ 15 * keys.indexOf(combo);
-		storetext = storetext + makeBox(hoo, combo);
-	})
-}
+    Mousetrap.bind(['command+a backspace', 'ctrl+a backspace'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+        $(".colourbox").remove();
+        storetext = '';
 
-Mousetrap.bind(['space', 'shift+space'], function() {
-	makeBoxSpace();
-	storetext = storetext + ' ';
-});
-Mousetrap.bind(['backspace'], function(e) {
-	if (e.preventDefault) {
-		e.preventDefault();
-	} else {
-		// internet explorer
-		e.returnValue = false;
-	}
-	deleteLetter();
-	storetext = storetext.substring(0, storetext.length - 1);
-});
-Mousetrap.bind(['command'], function(e) {
-	if (e.preventDefault) {
-		e.preventDefault();
-	} else {
-		// internet explorer
-		e.returnValue = false;
-	}
-});
-Mousetrap.bind('command', function() {
-	showLetter();
-}, 'keydown');
-Mousetrap.bind('command', function() {
-	hideLetter();
-}, 'keyup');
-Mousetrap.bind('return', function() {
-	var box = document.createElement("div");
-	box.className = 'colourbox return';
-	document.getElementById('thisbox').appendChild(box);
-	storetext = storetext + '\n';
-});
+    }, 'keydown');
 
-function makeBox(colour, combo) {
-	var number = Math.floor((Math.random() * effects.length - 1) + 1);
-	var box = document.createElement("div");
-	box.innerHTML = "<div id ='end' class='colourbox " + effects[number] + "' style='background-color:hsl(" + colour + ",100%,80%)'>" + "<span  class='fadeOut letter'>" + combo + "<\/span>" + "<\/div>";
-	document.getElementById('thisbox').appendChild(box);
-	return combo;
-}
+    Mousetrap.bind(['command', 'ctrl'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    });
 
-function deleteLetter() {
-	$('.colourbox').last().remove();
-}
+    Mousetrap.bind(['command', 'ctrl'], function() {
+    showLetter();
+    }, 'keydown');
 
-function showLetter() {
-	$('.letter').removeClass('fadeOut');
-}
+    Mousetrap.bind(['command', 'ctrl'], function() {
+    hideLetter();
+    }, 'keyup');
 
-function hideLetter() {
-	$('.letter').removeClass('fadeIn');
-	$('.letter').addClass('fadeOut');
-}
+    Mousetrap.bind('return', function() {
+    var box = document.createElement("div");
+    box.className = 'colourbox return';
+    document.getElementById('container').appendChild(box);
+    storetext = storetext + '\n';
+    });
 
+    function makeBox(colour, combo, brightness) {
+    var number = Math.floor((Math.random() * effects.length - 1) + 1);
+    var box = document.createElement("span");
+    box.className = 'colourbox ' + effects[number];
+    box.style.backgroundColor = 'hsl(' + colour + ',100%,' + brightness + ')';
+    box.innerHTML = "<span class='letter'>" + combo + "<\/span>"
+    document.getElementById('container').appendChild(box);
+    return combo;
+    }
 
-function makeBoxSpace() {
-	var box = document.createElement("div");
-	box.innerHTML = "<div class='colourbox space slideUp' style='background-color:hsl(1,100%,100%)'><\/div>";
-	document.getElementById('thisbox').appendChild(box);
-}
+    function destroyLetter() {
+    $('.colourbox').last().remove();
+    }
 
+    function showLetter() {
+    $('.letter').removeClass('fadeOut');
+    }
 
-$(function() {
-	$('#box-info').click(function() {
-		$('#about').fadeToggle();
-	});
-	$('#about').click(function() {
-		$('#about').fadeToggle();
-	});
-	$('#box-sans').click(function() {
-		$("body").toggleClass("sans");
-	});
-	$('#box-ital').click(function() {
-		$("body").toggleClass("italic");
-	});
-	$('#box-refresh').click(function() {
-		$(".colourbox").remove();
-	});
-	$('#blinking').scrollintoview({
-		duration: 2500,
-		direction: "vertical",
-		complete: function() {
-			// highlight the element so user's focus gets where it needs to be
-		}
-	});
-	$('#box-download').click(function() {
-		download('mywords.txt', storetext);
-	});
+    function hideLetter() {
+    $('.letter').addClass('fadeOut');
+    }
 
-});
+    function makeBoxSpace() {
+    var space = document.createElement("span");
+    space.className = 'colourbox space';
+    space.style.backgroundColor = 'white';
+    document.getElementById('container').appendChild(space);
+    }
 
-function download(filename, text) {
-	var file = document.createElement('a');
-	file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-	file.setAttribute('download', filename);
-	file.click();
-}
+    function makeWhite() {}
+    $(function() {
+    $('#box-info').click(function() {
+        $('#about').fadeToggle();
+    });
+    $('#about').click(function() {
+        $('#about').fadeToggle();
+    });
+    $('#box-sans').click(function() {
+        $("body").toggleClass("sans");
+    });
+    $('#box-ital').click(function() {
+        $("body").toggleClass("italic");
+    });
+    $('#box-eye').click(function() {
+        $('#box-eye').toggleClass("open");
+        if (shouldIShow == 1) {
+            shouldIShow = 0;
+            hideLetter();
+        } else {
+            shouldIShow = 1;
+            showLetter();
+        }
+    });
+    $('#box-refresh').click(function() {
+        $(".colourbox").remove();
+        storetext = '';
+    });
 
+    $('#blinking').scrollintoview({
+        duration: 2500,
+        direction: "vertical",
+        complete: function() {
+            // highlight the element so user's focus gets where it needs to be
+        }
+    });
+    $('#box-download').click(function() {
+        download('mywords.txt', storetext);
+    });
+    });
+
+    function download(filename, text) {
+    var file = document.createElement('a');
+    file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    file.setAttribute('download', filename);
+    file.click();
+    }
     </script>
 
     <title></title>
@@ -160,12 +192,14 @@ function download(filename, text) {
         </div>
     </div>
 
-    <div id="help">
+    <div id="help" class="unselectable">
         <div id="box-info" class="questionbox"><img src="icon_q.png"></div>
 
         <div id="box-download" class="questionbox"><img src="icon_d.png"></div>
 
         <div id="box-refresh" class="questionbox"><img src="icon_r.png"></div>
+
+        <div id="box-eye" class="questionbox closed"></div>
 
         <div id="box-ital" class="questionbox">
             <em>i</em>
@@ -177,7 +211,7 @@ function download(filename, text) {
     </div>
 
     <div class="wrapper">
-        <div id="thisbox"></div>
+        <div id="container"></div>
 
         <div class="fadeInOut" id="blinking"></div>
     </div>

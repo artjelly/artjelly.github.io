@@ -99,9 +99,6 @@ body {
 	padding-right:2px;
 	text-align:center;
 	padding-top:13px;
-	white-space:nowrap;
-	text-overflow:visible;
-	overflow:visible;
 }
 
 .sans {
@@ -150,8 +147,7 @@ p.descript {
 	width:80%;
 	margin-left:10%;
 	padding-top:100px;
-	min-width: 610px;
-
+	min-width:610px;
 }
 
 #help {
@@ -164,8 +160,8 @@ p.descript {
 	margin:10px 5px;
 	text-align:center;
 	padding:6px 8px 10px;
-	width:20px;
-	height:20px;
+	width:22px;
+	height:22px;
 	background-color:#dfdfdf;
 	opacity:1;
 	float:right;
@@ -175,8 +171,24 @@ p.descript {
 	background-color:#949496;
 }
 
+.closed {
+	background-image:url(icon_eyeclosed.png);
+	background-size:22px 22px;
+	background-repeat:no-repeat;
+	background-position:8px;
+	background-color:#464545;
+}
+
+.open {
+	background-image:url(icon_eyeopen.png);
+	background-size:22px 22px;
+	background-repeat:no-repeat;
+	background-position:8px;
+	background-color:#d4d4d4;
+}
+
 .questionbox img {
-	width:20px;
+	width:22px;
 	margin-top:2px;
 }
 
@@ -210,7 +222,6 @@ p.descript {
 	margin:0 auto;
 	margin-top:100px;
 	padding:20px;
-
 }
 
 .colourbox.return {
@@ -248,4 +259,17 @@ a:hover {
 	text-decoration:none;
 	cursor:hand;
 	font-style:italic;
+}
+
+.unselectable {
+	-webkit-touch-callout:none;
+	-webkit-user-select:none;
+	-khtml-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+}
+
+.selected {
+	opacity:.2;
 }
