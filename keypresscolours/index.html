@@ -79,7 +79,9 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
     }, 'keydown');
 
     Mousetrap.bind(['command', 'ctrl'], function() {
-    hideLetter();
+	    if (shouldIShow==0){
+	    hideLetter();
+	    }
     }, 'keyup');
 
     Mousetrap.bind('return', function() {
