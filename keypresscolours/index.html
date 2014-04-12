@@ -18,6 +18,8 @@
     var shouldIShow = 0; //0 means set to fade, 1 means set to show
     var effects = ['slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
     var showAbout = 1; // 1 means about dialog is open
+	var brightness = '83%';
+
 
     /********* MOUSE TRAP BINDINGS *********/
 
@@ -33,7 +35,6 @@
         //create hue value for hsl
         var colour = 165 + 15 * keys.indexOf(combo);
         //adjust brightness of all boxes
-        brightness = '83%';
         if (combo != 'esc') {
             //creates colourbox and adds typed letter to storeText
             storeText = storeText + makeBox(colour, combo, brightness);
@@ -42,6 +43,21 @@
             }
         }
     })
+
+    Mousetrap.bind(['command+a ' +keys[i], 'ctrl+a ' +keys[i]], function(e, combo) {
+	clearDefault(e);
+    $(".colourbox").remove();
+    storeText = '';
+	clearSelection();
+	    var combo = combo.slice(-1);
+        var colour = 165 + 15 * keys.indexOf(combo);
+        storeText = storeText + makeBox(colour, combo, brightness);
+            if (shouldIShow == 0) {
+                $('.letter').addClass('fadeOut')
+        }
+
+    });
+
     }
 
     //create space
@@ -52,24 +68,14 @@
 
     //deletes letter
     Mousetrap.bind(['backspace', 'shift+backspace'], function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
-    destroyLetter();
+		clearDefault(e);
+      destroyLetter();
     storeText = storeText.substring(0, storeText.length - 1);
     });
 
     //select all and delete
     Mousetrap.bind(['command+a backspace', 'ctrl+a backspace'], function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
+   clearDefault(e);
     $(".colourbox").remove();
     storeText = '';
     clearSelection();
@@ -120,6 +126,14 @@
     $('.letter').removeClass('fadeOut');
     }
 
+	function clearDefault(e){
+		    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+	}
     //hides letter
     function hideLetter() {
     $('.letter').addClass('fadeOut');
