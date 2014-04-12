@@ -11,8 +11,6 @@
     <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="animate.css" title="" type="text/css" media="screen" charset="utf-8">
-    <script src="jquery.scrollintoview.min.js" type="text/javascript">
-</script>
     <script src="mousetrap.min.js" type="text/javascript">
 </script>
     <script type="text/javascript">
@@ -20,10 +18,18 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
     var storetext = '';
     var shouldIShow = 0;
     var effects = ['slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
+	var showAbout = 1;
+
     for (var i = 0; i < keys.length; i++) {
     Mousetrap.bind(keys[i], function(e, combo) {
         //log(combo);
-        $('#about').fadeOut();
+        if (showAbout == 1){
+	        $('#about').fadeOut();
+	        showAbout = 0;
+        }
+
+        scrollToElement($('#blinking'));
+
         var colour = 165 + 15 * keys.indexOf(combo);
 
         if (combo != 'esc'){
@@ -36,6 +42,10 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
         }
     })
     }
+
+function scrollToElement(ele) {
+    $(window).scrollTop(ele.offset().top);
+}
 
     Mousetrap.bind(['space', 'shift+space'], function() {
     makeBoxSpace();
@@ -136,6 +146,13 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
     $(function() {
     $('#box-info').click(function() {
         $('#about').fadeToggle();
+        if (showAbout == 1){
+	        showAbout = 0;
+        }
+        else {
+	        showAbout =1;
+        }
+
     });
     $('#about').click(function() {
         $('#about').fadeToggle();
@@ -161,16 +178,11 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
         storetext = '';
     });
 
-    $('#blinking').scrollintoview({
-        duration: 2500,
-        direction: "vertical",
-        complete: function() {
-            // highlight the element so user's focus gets where it needs to be
-        }
-    });
     $('#box-download').click(function() {
         download('mywords.txt', storetext);
     });
+
+
     });
 
     function download(filename, text) {
@@ -179,6 +191,9 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
     file.setAttribute('download', filename);
     file.click();
     }
+
+
+
     </script>
 
     <title></title>
@@ -229,8 +244,7 @@ var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f'
 
     <div class="wrapper">
         <div id="container"></div>
-
-        <div class="fadeInOut" id="blinking"></div>
+        <div class="fadeInOut" id="blinking">&nbsp;</div>
     </div>
 </body>
 </html>
