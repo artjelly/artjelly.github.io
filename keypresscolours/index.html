@@ -3,55 +3,54 @@
 <html>
 <head>
 
-    <script src="jquery-1.11.0.min.js" type="text/javascript">
-</script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=PT+Mono' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="style.css" title="" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="animate.css" title="" type="text/css" media="screen" charset="utf-8">
     <script src="mousetrap.min.js" type="text/javascript">
 </script>
     <script type="text/javascript">
-var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '`', '~', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', ",", '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'esc'];
-    var storetext = '';
-    var shouldIShow = 0;
+
+    var keys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '`', '~', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', ';', ",", '.', '/', '`', '~', "'", '\\', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'esc'];
+
+    var storeText = ''; //holds entered string
+    var shouldIShow = 0; //0 means set to fade, 1 means set to show
     var effects = ['slideUp', 'tossing', 'floating', 'slideDown', 'hatch', 'pulse'];
-	var showAbout = 1;
+    var showAbout = 1; // 1 means about dialog is open
+
+    /********* MOUSE TRAP BINDINGS *********/
 
     for (var i = 0; i < keys.length; i++) {
     Mousetrap.bind(keys[i], function(e, combo) {
-        //log(combo);
-        if (showAbout == 1){
-	        $('#about').fadeOut();
-	        showAbout = 0;
+        //if about dialog is
+        if (showAbout == 1) {
+            $('#about').fadeOut();
+            showAbout = 0;
         }
-
-        scrollToElement($('#blinking'));
-
+        //scrolls page to blinker
+        scrollToElement($('#blinker'));
+        //create hue value for hsl
         var colour = 165 + 15 * keys.indexOf(combo);
-
-        if (combo != 'esc'){
-        if (shouldIShow == 0) {
-            storetext = storetext + makeBox(colour, combo, '83%');
-            $('.letter').addClass('fadeOut');
-        } else {
-            storetext = storetext + makeBox(colour, combo, '83%');
-        }
+        //adjust brightness of all boxes
+        brightness = '83%';
+        if (combo != 'esc') {
+            //creates colourbox and adds typed letter to storeText
+            storeText = storeText + makeBox(colour, combo, brightness);
+            if (shouldIShow == 0) {
+                $('.letter').addClass('fadeOut')
+            }
         }
     })
     }
 
-function scrollToElement(ele) {
-    $(window).scrollTop(ele.offset().top);
-}
-
+    //create space
     Mousetrap.bind(['space', 'shift+space'], function() {
     makeBoxSpace();
-    storetext = storetext + ' ';
+    storeText = storeText + ' ';
     });
 
+    //deletes letter
     Mousetrap.bind(['backspace', 'shift+backspace'], function(e) {
     if (e.preventDefault) {
         e.preventDefault();
@@ -60,9 +59,10 @@ function scrollToElement(ele) {
         e.returnValue = false;
     }
     destroyLetter();
-    storetext = storetext.substring(0, storetext.length - 1);
+    storeText = storeText.substring(0, storeText.length - 1);
     });
 
+    //select all and delete
     Mousetrap.bind(['command+a backspace', 'ctrl+a backspace'], function(e) {
     if (e.preventDefault) {
         e.preventDefault();
@@ -70,37 +70,36 @@ function scrollToElement(ele) {
         // internet explorer
         e.returnValue = false;
     }
-        $(".colourbox").remove();
-        storetext = '';
-        clearSelection();
+    $(".colourbox").remove();
+    storeText = '';
+    clearSelection();
     }, 'keydown');
 
-    Mousetrap.bind(['command', 'ctrl'], function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
-    });
-
+    //show all when held down
     Mousetrap.bind(['command', 'ctrl'], function() {
     showLetter();
     }, 'keydown');
 
+    //continue fade if released
     Mousetrap.bind(['command', 'ctrl'], function() {
-	    if (shouldIShow==0){
-	    hideLetter();
-	    }
+    //checks if fade setting is on
+    if (shouldIShow == 0) {
+        hideLetter();
+    }
     }, 'keyup');
 
+    //create new line
     Mousetrap.bind('return', function() {
     var box = document.createElement("div");
     box.className = 'colourbox return';
     document.getElementById('container').appendChild(box);
-    storetext = storetext + '\n';
+    //allows new line to be stored in exported txt
+    storeText = storeText + '\n';
     });
 
+    /********* OTHER FUNCTIONS *********/
+
+    //create box
     function makeBox(colour, combo, brightness) {
     var number = Math.floor((Math.random() * effects.length - 1) + 1);
     var box = document.createElement("span");
@@ -111,60 +110,75 @@ function scrollToElement(ele) {
     return combo;
     }
 
+    //deletes letter
     function destroyLetter() {
     $('.colourbox').last().remove();
     }
 
+    //shows letter
     function showLetter() {
     $('.letter').removeClass('fadeOut');
     }
 
+    //hides letter
     function hideLetter() {
     $('.letter').addClass('fadeOut');
     }
 
+    //creates space
     function makeBoxSpace() {
     var space = document.createElement("span");
     space.className = 'colourbox space';
-    space.innerHTML = '&nbsp;';
-    space.style.backgroundColor = 'white';
+    space.innerHTML = '&nbsp;'; //cannot be empty, or it won't be recognized when copied
+    space.style.backgroundColor = 'none';
     document.getElementById('container').appendChild(space);
     }
 
+    //prevents letter from retaining its selection after text is cleared
     function clearSelection() {
-  	if (window.getSelection) {
-  		if (window.getSelection().empty) { // Chrome
-  			window.getSelection().empty();
-  		} else if (window.getSelection().removeAllRanges) { // Firefox
-  			window.getSelection().removeAllRanges();
-  		}
-  	} else if (document.selection) { // IE?
-  		document.selection.empty();
-  	}
-  }
-    function makeWhite() {}
-    $(function() {
-    $('#box-info').click(function() {
-        $('#about').fadeToggle();
-        if (showAbout == 1){
-	        showAbout = 0;
+    if (window.getSelection) {
+        if (window.getSelection().empty) { // Chrome
+            window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges) { // Firefox
+            window.getSelection().removeAllRanges();
         }
-        else {
-	        showAbout =1;
-        }
+    } else if (document.selection) { // IE?
+        document.selection.empty();
+    }
+    }
 
-    });
-    $('#about').click(function() {
-        $('#about').fadeToggle();
-    });
-    $('#box-sans').click(function() {
+    //makes screen scroll to blinker
+    function scrollToElement(ele) {
+    $(window).scrollTop(ele.offset().top);
+    }
+
+    //creates and downloads txt file with storeText
+    function download(filename, text) {
+    var file = document.createElement('a');
+    file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    file.setAttribute('download', filename);
+    file.click();
+    }
+
+    /********* JQUERY STARTS *********/
+
+    $(function() {
+    //apply serif or sans-serif
+    $('#btn-sans').click(function() {
         $("body").toggleClass("sans");
     });
-    $('#box-ital').click(function() {
+    //apply italic
+    $('#btn-ital').click(function() {
         $("body").toggleClass("italic");
     });
-    $('#box-eye').click(function() {
-        $('#box-eye').toggleClass("open");
+    //background black or white
+    $('#btn-light').click(function() {
+        $('#btn-light').toggleClass("moon");
+        $('html').toggleClass("night");
+    });
+    //letters fade over time or show
+    $('#btn-eye').click(function() {
+        $('#btn-eye').toggleClass("open");
         if (shouldIShow == 1) {
             shouldIShow = 0;
             hideLetter();
@@ -173,26 +187,31 @@ function scrollToElement(ele) {
             showLetter();
         }
     });
-    $('#box-refresh').click(function() {
+    //clear all text
+    $('#btn-refresh').click(function() {
         $(".colourbox").remove();
-        storetext = '';
+        //empty string
+        storeText = '';
     });
-
-    $('#box-download').click(function() {
-        download('mywords.txt', storetext);
+    //save string to txt
+    $('#btn-download').click(function() {
+        download('mywords.txt', storeText);
     });
-
-
+    // show about dialog box
+    $('#btn-info').click(function() {
+        $('#about').fadeToggle();
+        //if about dialog is showing, hide it
+        if (showAbout == 1) {
+            showAbout = 0;
+        } else {
+            showAbout = 1;
+        }
     });
-
-    function download(filename, text) {
-    var file = document.createElement('a');
-    file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    file.setAttribute('download', filename);
-    file.click();
-    }
-
-
+    //click anywhere to close about dialog
+    $('#about').click(function() {
+        $('#about').fadeToggle();
+    });
+    });
 
     </script>
 
@@ -200,51 +219,49 @@ function scrollToElement(ele) {
 </head>
 
 <body>
-    <!--
-<div class="bar">
-<span id="statusBar"></span>
-</div>
--->
-
     <div id="about">
         <div id="aboutbox">
             <h1>About</h1>
-
             <p>Colour-Writer turns letters into colours. Let's begin writing some calming and colourful patterns.</p>
             <hr>
-
             <p>&#x2318; Reveals writing in full.</p>
-
             <p>&#x23ce; Creates new line.</p>
-
             <p>&#x232b; Deletes character.</p>
             <hr>
-
             <p class="descript">Created by <a href="http://www.artjelly.com">Jia Lee</a> using the awesome <a href="http://craig.is/killing/mice">Mousetrap.js</a> and <a href="http://www.justinaguilar.com/animations/">CSS3 Animations Cheat Sheet.</a></p>
         </div>
     </div>
 
-    <div id="help" class="unselectable">
-        <div id="box-info" class="questionbox"><img src="icon_q.png"></div>
+    <div id="nav1" class="unselectable">
+        <div id="box-more" class="nav-btn gray"><img src="icon_more.png"></div>
 
-        <div id="box-download" class="questionbox"><img src="icon_d.png"></div>
+        <div id="btn-eye" class="nav-btn closed"></div>
 
-        <div id="box-refresh" class="questionbox"><img src="icon_r.png"></div>
+        <div id="btn-light" class="nav-btn sun"></div>
 
-        <div id="box-eye" class="questionbox closed"></div>
-
-        <div id="box-ital" class="questionbox">
+        <div id="btn-ital" class="nav-btn white">
             <em>i</em>
         </div>
 
-        <div id="box-sans" class="questionbox">
+        <div id="btn-sans" class="nav-btn white">
             A
         </div>
     </div>
 
+    <div id="nav2" class="unselectable">
+        <div id="btn-refresh" class="nav-btn gray"><img src="icon_r.png"></div>
+
+        <div id="btn-download" class="nav-btn gray"><img src="icon_d.png"></div>
+
+        <div id="btn-info" class="nav-btn gray"><img src="icon_q.png"></div>
+    </div>
+
     <div class="wrapper">
         <div id="container"></div>
-        <div class="fadeInOut" id="blinking">&nbsp;</div>
+
+        <div class="fadeInOut" id="blinker">
+            &nbsp;
+        </div>
     </div>
 </body>
 </html>
