@@ -18,7 +18,7 @@ div {
 	}
 }
 
-@media screen and (max-width:319px) {
+@media screen and (max-width:320px) {
 	body {
 		background-image:url(iphone4s.jpg);
 		background-size:200px 230px;
