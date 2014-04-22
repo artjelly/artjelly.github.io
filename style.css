@@ -178,18 +178,18 @@ a:visited {
 }
 
 .s1 {
-	min-height:380px;
+	min-height:450px;
 	background:#fff;
 }
 
 .s2 {
-	min-height:300px;
+	min-height:380px;
 	background:white;
 	color:black;
 }
 
 .s3 {
-	min-height:300px;
+	min-height:500px;
 	background:#fff;
 }
 
@@ -382,3 +382,6 @@ border-bottom:3px blue dotted;
 	width:720px;
 }
 
+.descript{
+	padding-bottom:30px
+}
