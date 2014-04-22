@@ -1,0 +1,50 @@
+
+			body{
+				background-color:white;
+				font-family:"Helvetica";
+
+			}
+
+			div{
+				width:50%;
+				margin:0 auto;
+				margin-top:10%;
+				left:25%;
+				background-color:white;
+				padding:10%;
+			}
+
+
+			@media screen {
+				.device{
+					display:none;
+				}
+			}
+
+			@media screen and (max-width:640px) {
+				body{
+				background-image:url('iphone4s.jpg');
+				background-size: 200px 230px;
+
+				}
+
+				#iphone{
+					display:block;
+				}
+
+			}
+
+			@media screen and (min-width:640px) {
+				body{
+				background-image:url('macbook.png');
+				background-size: 200px 200px;
+
+				}
+
+				#macbook{
+					display:block;
+				}
+
+			}
+
+
