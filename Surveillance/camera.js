@@ -596,7 +596,6 @@ var linksArray = [
 "http://kamera3.vfp.slu.se/mjpg/video.mjpg",
 "http://kamerka.dtdns.net:8086/mjpg/video.mjpg",
 "http://kilpis5.kilpis.helsinki.fi/mjpg/video.mjpg",
-"http://kilpiscope.axiscam.net/mjpg/video.mjpg",
 "http://klosterplatz.selfip.info/mjpg/video.mjpg",
 "http://koreaccs.dyndns.org/mjpg/video.mjpg",
 "http://lambcam.axiscam.net/mjpg/video.mjpg",
