@@ -10,7 +10,7 @@ var imgno = 0;
 var totalFrames = 5;
 
 
-var nie = "http://172.53.75.52";
+var nie = "http://172.26.163.149";
 var home = "http://192.168.1.4";
 
 var linksArray_sure=[
@@ -134,7 +134,7 @@ imgno++;
 function frameReplace(){
 var i = Math.floor((Math.random() * 5) + 0);
 console.log("replaceno: " + i);
-$("#img"+i).replaceWith("<div class='frameholder' id='frame" + i + "'><div id='time'>Who Watches the Watchmen</div><iframe src='" + home + "'></iframe></div>");
+$("#img"+i).replaceWith("<div class='frameholder' id='frame" + i + "'><div id='time'>Who Watches the Watchmen</div><iframe src='" + nie + "'></iframe></div>");
 setInterval(function(){updateTime()},1000);
 }
 
