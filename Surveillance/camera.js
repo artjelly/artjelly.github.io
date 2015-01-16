@@ -73,7 +73,7 @@ $(document).ready(function(){
 arraySize = linksArray.length;
 /* generateTags(totalFrames); */
 imageFunction(linksArray);
-setInterval(function(){frameReplace()}, 15000);
+setInterval(function(){frameReplace()}, 13000);
 setInterval(function(){imageReplace()}, 5000);
 
 /*
