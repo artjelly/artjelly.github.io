@@ -73,8 +73,10 @@ $(document).ready(function(){
 arraySize = linksArray.length;
 /* generateTags(totalFrames); */
 imageFunction(linksArray);
-setInterval(function(){frameReplace()}, 10000);
+setInterval(function(){frameReplace()}, 15000);
 setInterval(function(){imageReplace()}, 5000);
+
+/*
 
 function grabLinks(){
 
@@ -94,6 +96,7 @@ function storeLinks(){
 linksArray = (grabLinks()).split('\n');
 }
 
+*/
 
 //GREAT FOR GENERATING AS MANY IMAGES AS REQUIRED
 /*
